@@ -7,7 +7,7 @@ import { MascotaModel } from './mascota.model';
 })
 export class MascotaService {
 
-  BASE_URL='http://localhost:4000';
+  BASE_URL='http://127.0.0.1:4000';
   constructor(private http: HttpClient) {
   }
 
@@ -33,7 +33,7 @@ export class MascotaService {
 
   //ELiminar una Mascota
   borrarMascota(idMascota: string){
-    return this.http.delete<string>(`${this.BASE_URL}/mascotas/eliminar/${idMascota}`);
+    return this.http.delete<string>(`${this.BASE_URL}/mascotas/borrar/${idMascota}`);
   }
 
 

@@ -12,7 +12,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EditarMascotasComponent implements OnInit{
 
   idMascota= '';
-  mascota=new MascotaModel('','','');
+  mascota = new MascotaModel(
+    '',  // Convertir a number (aunque aquí la cadena vacía será NaN)
+    '',          // nombre
+    '',          // species
+    '',          // breed
+    '',  // Convertir a number para edad
+    '',          // gender
+    '',          // size
+    ''           // description
+  );
+  
   constructor(private mascotaService: MascotaService,private route: ActivatedRoute,private router: Router){
   }
 

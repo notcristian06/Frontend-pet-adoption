@@ -3,14 +3,44 @@
     <form (ngSubmit)="onSubmit()" #mascotaForm="ngForm">
       <fieldset class="form-group">
         <div class="col-sm-12">
-          <label class="control-label" for="nombre">Nombre</label>
-          <input type="text" class="form-control" required [(ngModel)]="mascota.nombre" name="nombre">
+          <label class="control-label" for="name">Nombre</label>
+          <input type="text" class="form-control" required [(ngModel)]="mascota.name" name="name">
         </div>
       </fieldset>
       <fieldset class="form-group">
         <div class="col-sm-12">
-          <label class="control-label" for="email">Edad</label>
-          <input type="email" class="form-control" required [(ngModel)]="mascota.edad" name="edad">
+          <label class="control-label" for="species">Especies</label>
+          <input type="text" class="form-control" required [(ngModel)]="mascota.species" name="species">
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <div class="col-sm-12">
+          <label class="control-label" for="breed">Raza</label>
+          <input type="text" class="form-control" required [(ngModel)]="mascota.breed" name="breed">
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <div class="col-sm-12">
+          <label class="control-label" for="age">Edad</label>
+          <input type="text" class="form-control" required [(ngModel)]="mascota.age" name="age">
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <div class="col-sm-12">
+          <label class="control-label" for="description">Descripción</label>
+          <input type="text" class="form-control" required [(ngModel)]="mascota.description" name="description">
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <div class="col-sm-12">
+          <label class="control-label" for="gender">Género</label>
+          <input type="text" class="form-control" required [(ngModel)]="mascota.gender" name="gender">
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <div class="col-sm-12">
+          <label class="control-label" for="size">Tamaño</label>
+          <input type="text" class="form-control" required [(ngModel)]="mascota.size" name="size">
         </div>
       </fieldset>
       <fieldset class="form-group">
