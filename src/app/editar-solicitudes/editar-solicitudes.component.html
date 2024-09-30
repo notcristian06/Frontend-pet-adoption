@@ -1,1 +1,54 @@
-<p>editar-solicitudes works!</p>
+<div class="row">
+    <div class="col-sm-12">
+        <form (ngSubmit)="onSubmit()" #solicitudForm="ngForm">
+            <fieldset class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="pet_id">Id Mascota</label>
+                    <input type="text" class="form-control" required [(ngModel)]="solicitud.pet_id"
+                        name="pet_id">
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="adopter_id">Id Adoptante</label>
+                    <input type="text" class="form-control" required [(ngModel)]="solicitud.pet_id" name="pet_id">
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="request_date">Fecha de Solicitud</label>
+                    <input type="text" class="form-control" required [(ngModel)]="solicitud.request_date" name="request_date">
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="status">Estado</label>
+                    <input type="text" class="form-control" required [(ngModel)]="solicitud.status" name="status">
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="name_pet">Nombre de Mascota</label>
+                    <input type="text" class="form-control" required [(ngModel)]="solicitud.name_pet" name="name_pet">
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="name_adopter">Nombre de Adoptante</label>
+                    <input type="text" class="form-control" required [(ngModel)]="solicitud.name_adopter" name="name_adopter">
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <div class="col-sm-12">
+                    <label class="control-label" for="comments">Comentarios</label>
+                    <input type="text" class="form-control" required [(ngModel)]="solicitud.comments" name="comments">
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" [disabled]="!solicitudForm.form.valid">Enviar</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
