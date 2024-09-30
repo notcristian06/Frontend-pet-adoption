@@ -8,12 +8,23 @@ import { EditarMascotasComponent } from './editar-mascotas/editar-mascotas.compo
 import { MascotaService } from './shared/mascota.service';
 import { provideHttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ListaAdoptantesComponent } from './lista-adoptantes/lista-adoptantes.component';
+import { EditarAdoptantesComponent } from './editar-adoptantes/editar-adoptantes.component';
+import { ListaSolicitudesComponent } from './lista-solicitudes/lista-solicitudes.component';
+import { EditarSolicitudesComponent } from './editar-solicitudes/editar-solicitudes.component';
+import { AdoptanteService } from './shared/adoptante.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaMascotasComponent,
-    EditarMascotasComponent
+    EditarMascotasComponent,
+    ListaAdoptantesComponent,
+    EditarAdoptantesComponent,
+    ListaSolicitudesComponent,
+    EditarSolicitudesComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -23,6 +34,7 @@ import { FormsModule } from '@angular/forms';
   ],
   providers: [
     MascotaService,
+    AdoptanteService,
     provideHttpClient(),
     provideClientHydration()
   ],
