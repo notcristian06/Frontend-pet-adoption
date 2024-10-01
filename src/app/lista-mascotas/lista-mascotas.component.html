@@ -1,86 +1,179 @@
-<!DOCTYPE html>
-<html lang="es">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestión de Mascotas</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+  body {
+    background-color: #ffff00;
+    /* color de fondo */
+    position: relative;
+    /* Necesario para posicionar la imagen de fondo */
+    overflow: hidden;
+    /* Evita scroll si la imagen es más grande */
+  }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adopción de Mascotas</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
-    .navbar-brand {
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
+  .background-image {
+    background-image: url('https://th.bing.com/th/id/OIG1.HAjLMH74pcBoI_tORvD1?w=1024&h=1024&rs=1&pid=ImgDetMain');
+    background-size: cover;
+    /* Hace que la imagen cubra todo el contenedor */
+    background-position: center;
+    /* Centra la imagen */
+    position: absolute;
+    /* Posición absoluta para cubrir el body */
+    top: 0;
+    /* Coloca la imagen al inicio del contenedor */
+    left: 0;
+    /* Coloca la imagen al inicio del contenedor */
+    right: 0;
+    /* Abarca todo el ancho */
+    bottom: 0;
+    /* Abarca toda la altura */
+    opacity: 0.05;
+    /* Establece la opacidad */
+    z-index: -1;
+    /* Asegura que la imagen esté detrás del contenido */
+  }
 
-    .card img {
-      object-fit: cover;
-    }
+  .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
 
-    .card-body {
-      text-align: center;
-    }
-  </style>
-</head>
+  .card img {
+    object-fit: cover;
+    
+  }
 
-<body>
-  <!-- Barra de navegación -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Adopta</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Aporte</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Eventos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Tienda</a>
-        </li>
-      </ul>
-      <!-- Imagen de usuario -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <img src="https://img.freepik.com/free-photo/beautiful-pet-portrait-dog_23-2149218450.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1727568000&semt=ais_hybrid" alt="Usuario" class="rounded-circle" width="30" height="30">
-          </a>
-        </li>
-      </ul>
+  .card-body {
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
 
+  .custom-navbar {
+    background-color: #ffda96;
+    /* Color personalizado */
+    color: white;
+    /* Color del texto */
+  }
+
+  .custom-nav-link {
+    font-size: 1.2rem;
+    /* Tamaño de la fuente */
+    font-family: 'Arial', sans-serif;
+    /* Cambia a la fuente deseada */
+    font-weight: bold;
+    /* Para texto en negrita */
+    color: #000000;
+    /* Color del texto */
+  }
+
+  .custom-nav-link:hover {
+    color: #cc00ff;
+    /* Color del texto al pasar el mouse */
+  }
+</style>
+
+<!-- Imagen de fondo -->
+<div class="background-image"></div>
+
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar custom-navbar">
+  <a class="navbar-brand" href="/mascotas">Tail Tails Rescue</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link custom-nav-link" href="/mascotas">Mascotas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link custom-nav-link" href="/adoptantes">Adoptantes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link custom-nav-link" href="/solicitudes">Solicitudes</a>
+      </li>
+    </ul>
+    <!-- Imagen de usuario -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <img src="https://www.svgrepo.com/show/388246/people-safe.svg" alt="Usuario" class="rounded-circle" width="30"
+            height="30">
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-center">Gestión de Mascotas</h2>
+    <!-- Espacio para centrar la barra de búsqueda -->
+    <div style="flex-grow: 1; text-align: center;">
+      <input class="form-control" type="text" placeholder="Buscar por nombre o especie..." [(ngModel)]="searchText"
+        style="width: 300px; display: inline-block; border-radius: 25px; border: 2px solid hsl(290, 100%, 50%); 
+            padding: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); transition: border 0.3s; font-family: 'Arial', sans-serif; font-size: 1.2rem;">
     </div>
-  </nav>
+    <!-- Botón Registrar Nueva Mascota alineado a la derecha -->
+    <button class="btn btn-sm" [routerLink]="['/mascotas/agregar']"
+      style="background-color: #00ffaa; color: black; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.2rem; ">
+      Registrar Nueva Mascota
+    </button>
+  </div>
 
-  <!-- Sección de mascotas -->
-  <div class="container mt-5">
-    <h2 class="text-center mb-4">Mascotas Disponibles para Adopción</h2>
-    <div class="row">
-      <!-- Card de ejemplo de una mascota -->
-      <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let mascota of mascotas | async">
+  <div class="row">
+    <ng-container *ngFor="let mascota of (mascotas | async)">
+      <div class="col-lg-3 col-md-6 col-sm-12"
+        *ngIf="!searchText || mascota.name.toLowerCase().includes(searchText.toLowerCase()) || mascota.species.toLowerCase().includes(searchText.toLowerCase())">
         <div class="card mb-4 shadow-sm">
-          <!--  <img class="card-img-top" [src]="mascota.foto_url" alt="Imagen de {{mascota.nombre}}" style="height: 200px;"> -->
-          <img src="https://icons.veryicon.com/png/o/miscellaneous/fresh-icon-1/dog-40.png" alt="Usuario" class="rounded-circle" width="200" height="200">
+          <!-- Asignar imagen según la especie usando un condicional en el src -->
+          <img class="card-img-top" [src]="(mascota.species.toLowerCase() === 'perro') ? 'https://www.svgrepo.com/show/405231/dog-face.svg' :
+                   (mascota.species.toLowerCase() === 'gato') ? 'https://www.svgrepo.com/show/401273/cat-face.svg' :
+                   (mascota.species.toLowerCase() === 'hámster') ? 'https://www.svgrepo.com/show/405777/hamster.svg' :
+                   (mascota.species.toLowerCase() === 'conejo') ? 'https://www.svgrepo.com/show/398149/rabbit-face.svg' :
+                   (mascota.species.toLowerCase() === 'cuy' || mascota.species.toLowerCase() === 'conejillo de indias') ? 'https://img.freepik.com/premium-vector/guinea-pig-icon-vector-illustration-perfect-circular-designs_1185690-354.jpg?w=740' :
+                   (mascota.species.toLowerCase() === 'ratón') ? 'https://www.svgrepo.com/show/402148/rat.svg' :
+                   (mascota.species.toLowerCase() === 'rata') ? 'https://www.svgrepo.com/show/402177/mouse.svg' :
+                   (mascota.species.toLowerCase() === 'loro') ? 'https://www.svgrepo.com/show/397712/parrot.svg' :
+                   (mascota.species.toLowerCase() === 'canario') ? 'https://img.freepik.com/free-vector/yellow-bird-illustration_1142-206621.jpg?t=st=1727738059~exp=1727741659~hmac=e5e260524a6f5f4dbe2b69778ef5c65ac29919bd1cbce1265dbce15b28a826ba&w=740' :
+                   (mascota.species.toLowerCase() === 'periquito') ? 'https://www.svgrepo.com/show/417456/bird.svg' :
+                   (mascota.species.toLowerCase() === 'gallo') ? 'https://www.svgrepo.com/show/402629/rooster.svg' :
+                   (mascota.species.toLowerCase() === 'anguila') ? 'https://www.svgrepo.com/show/401438/eagle.svg' :
+                   (mascota.species.toLowerCase() === 'tortuga') ? 'https://www.svgrepo.com/show/402833/turtle.svg' :
+                   (mascota.species.toLowerCase() === 'serpiente') ? 'https://www.svgrepo.com/show/289236/snake.svg' :
+                   (mascota.species.toLowerCase() === 'iguana') ? 'https://img.freepik.com/free-vector/hand-drawn-cartoon-chameleon-illustration_23-2150387676.jpg?t=st=1727738335~exp=1727741935~hmac=8f399eb067438c2991bd101dd8f8a73c0eefe2a668f0996b8a0a46fd4bcaf97f&w=740' :
+                   (mascota.species.toLowerCase() === 'cangrejo') ? 'https://www.svgrepo.com/show/530182/crab.svg' :
+                   (mascota.species.toLowerCase() === 'tarantula') ? 'https://www.svgrepo.com/show/317393/tarantula.svg' :
+                   (mascota.species.toLowerCase() === 'araña') ? 'https://www.svgrepo.com/show/317393/tarantula.svg' :
+                   (mascota.species.toLowerCase() === 'hurón') ? 'https://img.freepik.com/free-vector/cute-otter-wild-animal-cartoon-sticker_1308-78999.jpg?t=st=1727738436~exp=1727742036~hmac=3fb4f8085d44db6c9ba47e9ecaaebd6c45243f2f1397a78212e2dc7080169c3d&w=740' :
+                   (mascota.species.toLowerCase() === 'cacatúa') ? 'https://img.freepik.com/premium-vector/cute-vector-illustration-parrot-kids_925324-31237.jpg?w=740' :
+                   (mascota.species.toLowerCase() === 'ave') ? 'https://www.svgrepo.com/show/484500/bird.svg ' :
+                   (mascota.species.toLowerCase() === 'pez') ? 'https://www.svgrepo.com/show/317413/fish.svg' :
+                   (mascota.species.toLowerCase() === 'murcielago') ? 'https://www.svgrepo.com/show/425730/bat-scary.svg' :
+                   'https://www.svgrepo.com/show/366549/application-pet.svg'" alt="Imagen de {{mascota.name}}"
+                   style="height: 200px; width: 200px;">
+
+
           <div class="card-body">
             <h5 class="card-title">{{ mascota.name }}</h5>
             <p class="card-text">Edad: {{ mascota.age }} años</p>
             <p class="card-text">Especie: {{ mascota.species }}</p>
-            <a class="btn btn-info btn-sm mr-2" [routerLink]="['/mascotas/editar/', mascota.id]">Editar</a>
-            <button class="btn btn-danger btn-sm" (click)="borrarMascota(mascota.id)">Borrar</button>
+            <!-- Botón Editar con color personalizado -->
+            <a class="btn btn-sm mr-2" [routerLink]="['/mascotas/editar/', mascota.id]"
+              style="background-color: #a200ff; color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem;" >Editar</a>
 
+            <!-- Botón Borrar con color personalizado -->
+            <button class="btn btn-sm" (click)="borrarMascota(mascota.id)"
+              style="background-color: #f44336; color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem;">Borrar</button>
           </div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
+</div>
 
-  <!-- Scripts de Bootstrap y dependencias -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

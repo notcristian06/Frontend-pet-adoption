@@ -6,25 +6,27 @@ import { MascotaService } from '../shared/mascota.service';
 @Component({
   selector: 'app-lista-mascotas',
   templateUrl: './lista-mascotas.component.html',
-  styleUrl: './lista-mascotas.component.css'
+  styleUrls: ['./lista-mascotas.component.css'] // Corrige "styleUrl" a "styleUrls"
 })
-export class ListaMascotasComponent implements OnInit{
+export class ListaMascotasComponent implements OnInit {
   mascotas: Observable<MascotaModel[]> | undefined;
-  constructor(private mascotaService: MascotaService){}
+  searchText: string = '';  // Agrega esta propiedad
+
+  constructor(private mascotaService: MascotaService) {}
+
   ngOnInit() {
-    this.mascotas=this.mascotaService.obtenerMascotas();
+    this.mascotas = this.mascotaService.obtenerMascotas();
   }
 
-  borrarMascota(idMascota:string){
+  borrarMascota(idMascota: string) {
     this.mascotaService.borrarMascota(idMascota).subscribe({
-      next: data=>{
+      next: data => {
         console.log(`Registro Eliminado`);
         this.ngOnInit();
       },
-      error: err=>{
+      error: err => {
         console.log(`Error al eliminar Registro ${err}`);
       }
     });
   }
 }
-
