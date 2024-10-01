@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
   body {
-    background-color: #ffff00;
+    background-color: #ffffbf;
     /* color de fondo */
     position: relative;
     /* Necesario para posicionar la imagen de fondo */
@@ -41,6 +41,7 @@
 
   .card img {
     object-fit: cover;
+    margin-left: 30px;
     
   }
 
@@ -156,18 +157,31 @@
                    style="height: 200px; width: 200px;">
 
 
-          <div class="card-body">
-            <h5 class="card-title">{{ mascota.name }}</h5>
-            <p class="card-text">Edad: {{ mascota.age }} años</p>
-            <p class="card-text">Especie: {{ mascota.species }}</p>
-            <!-- Botón Editar con color personalizado -->
-            <a class="btn btn-sm mr-2" [routerLink]="['/mascotas/editar/', mascota.id]"
-              style="background-color: #a200ff; color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem;" >Editar</a>
-
-            <!-- Botón Borrar con color personalizado -->
-            <button class="btn btn-sm" (click)="borrarMascota(mascota.id)"
-              style="background-color: #f44336; color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem;">Borrar</button>
-          </div>
+                   <div class="card-body">
+                    <h5 class="card-title">{{ mascota.name }}</h5>
+                    <p class="card-text">ID: {{ mascota.id }}</p>
+                    <p class="card-text">Edad: {{ mascota.age }} años</p>
+                    <p class="card-text">Especie: {{ mascota.species }}</p>
+                  
+                    <!-- Botón Editar -->
+                    <a class="btn btn-sm mr-2" [routerLink]="['/mascotas/editar/', mascota.id]"
+                      style="background-color: #a200ff; color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem;">
+                      Editar
+                    </a>
+                  
+                    <!-- Botón Borrar -->
+                    <button class="btn btn-sm" (click)="borrarMascota(mascota.id)"
+                      style="background-color: #f44336; color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem;">
+                      Borrar
+                    </button>
+                  
+                    <!-- Botón Adoptar 
+                    <a class="btn btn-sm" [routerLink]="['/solicitudes/agregar', { pet_id: mascota.id, pet_ame: mascota.name }]"
+                      style="background-color: #4CAF50; color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem;">
+                      Adoptar
+                    </a>-->
+                  </div>
+                  
         </div>
       </div>
     </ng-container>

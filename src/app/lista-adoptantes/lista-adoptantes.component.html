@@ -1,98 +1,220 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestión de Adoptantes</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+  body {
+    background-color: #ffffbf;
+    /* Color de fondo */
+    position: relative;
+    /* Necesario para posicionar la imagen de fondo */
+    overflow: hidden;
+    /* Evita scroll si la imagen es más grande */
+  }
+
+  .background-image {
+    background-image: url('https://img.freepik.com/free-vector/people-pattern_23-2148128620.jpg?t=st=1727759543~exp=1727763143~hmac=0753fd341c00b11e22daf5d338f85f76557b0e30c0b8207babadb4359d91bb6a&w=740');
+    background-size: cover;
+    /* Hace que la imagen cubra todo el contenedor */
+    background-position: center;
+    /* Centra la imagen */
+    position: absolute;
+    /* Posición absoluta para cubrir el body */
+    top: 0;
+    /* Coloca la imagen al inicio del contenedor */
+    left: 0;
+    /* Coloca la imagen al inicio del contenedor */
+    right: 0;
+    /* Abarca todo el ancho */
+    bottom: 0;
+    /* Abarca toda la altura */
+    opacity: 0.1;
+    /* Establece la opacidad */
+    z-index: -1;
+    /* Asegura que la imagen esté detrás del contenido */
+  }
+
+  .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  .custom-navbar {
+    background-color: #ffda96;
+    /* Color personalizado */
+    color: white;
+    /* Color del texto */
+  }
+
+  .custom-nav-link {
+    font-size: 1.2rem;
+    /* Tamaño de la fuente */
+    font-family: 'Arial', sans-serif;
+    /* Cambia a la fuente deseada */
+    font-weight: bold;
+    /* Para texto en negrita */
+    color: #000000;
+    /* Color del texto */
+  }
+
+  .custom-nav-link:hover {
+    color: #cc00ff;
+    /* Color del texto al pasar el mouse */
+  }
+
+  .adoptante-row {
+    display: flex;
+    /* Utiliza flexbox para alinear los datos horizontalmente */
+    justify-content: space-between;
+    /* Espacio uniforme entre los elementos */
+    padding: 10px;
+    /* Espaciado interno */
+    margin-bottom: 30px;
+    /* Espacio entre filas */
+    background-color: rgba(173, 255, 248, 0.8);
+    /* Color de fondo */
+    border-radius: 10px;
+    /* Esquinas redondeadas */
+    box-shadow: 0 2px 5px rgba(77, 0, 100, 0.726);
+  }
+
+  .adoptante-info {
+    text-align: center;
+    /* Centra el texto */
+    margin-right: 20px;
+    /* Espacio entre columnas */
+    font-weight: bold;
+    /* Para hacer los títulos en negrita */
+    color: #00000085;
+
+  }
+
+  .adoptante-title {
+    color: #000000;
+    font-weight: bold;
+    /* Para hacer los títulos en negrita */
+    display: block;
+    /* Muestra cada título en una nueva línea */
+    margin-bottom: 5px;
+    /* Espacio entre título y dato */
+  }
+
+  .action-buttons {
+    text-align: center;
+  }
+</style>
+
+
+<!-- Imagen de fondo -->
+<div class="background-image"></div>
+
 <!-- Barra de navegación -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand logo" href="#">Tail Tails Rescue</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg navbar custom-navbar">
+  <a class="navbar-brand" href="/mascotas">Tail Tails Rescue</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link custom-nav-link" href="/mascotas">Mascotas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link custom-nav-link" href="/adoptantes">Adoptantes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link custom-nav-link" href="/solicitudes">Solicitudes</a>
+      </li>
+    </ul>
+    <!-- Imagen de usuario -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <img src="https://www.svgrepo.com/show/388246/people-safe.svg" alt="Usuario" class="rounded-circle" width="30"
+            height="30">
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-center">Gestión de Adoptantes</h2>
+    <!-- Barra de búsqueda -->
+    <div style="flex-grow: 1; text-align: center;">
+      <input class="form-control" type="text" placeholder="Buscar por nombre o identificación..."
+        [(ngModel)]="searchText"
+        style="width: 350px; display: inline-block; border-radius: 25px; border: 2px solid hsl(290, 100%, 50%); 
+                          padding: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); transition: border 0.3s; font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+    </div>
+    <!-- Botón Registrar Nuevo Adoptante alineado a la derecha -->
+    <button class="btn btn-sm" [routerLink]="['/adoptantes/agregar']"
+      style="background-color: #00ffaa; color: black; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.2rem;">
+      Registrar Nuevo Adoptante
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Mascotas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Adoptantes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Solicitudes de Adopción</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  
-  <div class="container">
-    <div class="row mt-4">
-      <div class="col-sm-10">
-        <h2>Gestión de Adoptantes</h2>
-      </div>
-      <div class="col-sm-2 text-right">
-        <button class="btn btn-primary" [routerLink]="['/adoptantes/agregar']">Nueva Adoptante</button>
-      </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-sm-12">
-        <table class="table table-striped">
-          <thead>
-  
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">NOMBRE</th>
-              <th scope="col">APELLIDO</th>
-              <th scope="col">EMAIL</th>
-              <th scope="col">TELÉFONO</th>
-              <th scope="col">IDENTIFICACIÓN</th>
-              <th scope="col">DIRECCIÓN</th>
-              <th scope="col">CIUDAD</th>
-              <th scope="col">ACCIONES</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let adoptante of adoptantes | async">
-              <td>{{ adoptante.id }}</td>
-              <td>{{ adoptante.first_name }}</td>
-              <td>{{ adoptante.last_name }}</td>
-              <td>{{ adoptante.email }}</td>
-              <td>{{ adoptante.phone }}</td>
-              <td>{{ adoptante.citizenship_card }}</td>
-              <td>{{ adoptante.address }}</td>
-              <td>{{ adoptante.city }}</td>
-              <td>
-                <a class="btn btn-info btn-sm mr-2" [routerLink]="['/adoptantes/editar/', adoptante.id]">Editar</a>
-                <button class="btn btn-danger btn-sm" (click)="borrarAdoptante(adoptante.id)">Borrar</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
   </div>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="movieModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="movieModalLabel">Detalles de la Película</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="modal-body">
-                <!-- Detalles de la película irán aquí -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Alquilar por <span id="modal-price"></span> COP</button>
-            </div>
+
+  <div class="row mt-3">
+    <div class="col-sm-12">
+      <h5 class="text-center"
+        style="text-shadow: 0 3px 2px rgba(0, 0, 0, 0.2); font-family: 'Arial', sans-serif; font-size: 2.5rem; margin-bottom: 30px;">
+        Lista de Adoptantes
+      </h5>
+
+
+
+      <ng-container *ngFor="let adoptante of (adoptantes | async)">
+        <div class="adoptante-row"
+          *ngIf="!searchText || adoptante.first_name.toLowerCase().includes(searchText.toLowerCase()) || adoptante.last_name.toLowerCase().includes(searchText.toLowerCase()) || adoptante.citizenship_card.toLowerCase().includes(searchText.toLowerCase())">
+
+          <div class="adoptante-info">
+            <span class="adoptante-title">ID:</span>
+            {{ adoptante.id }}
+          </div>
+          <div class="adoptante-info">
+            <span class="adoptante-title">NOMBRE:</span>
+            {{ adoptante.first_name }}
+          </div>
+          <div class="adoptante-info">
+            <span class="adoptante-title">APELLIDO:</span>
+            {{ adoptante.last_name }}
+          </div>
+          <div class="adoptante-info">
+            <span class="adoptante-title">EMAIL:</span>
+            {{ adoptante.email }}
+          </div>
+          <div class="adoptante-info">
+            <span class="adoptante-title">TELÉFONO:</span>
+            {{ adoptante.phone }}
+          </div>
+          <div class="adoptante-info">
+            <span class="adoptante-title">IDENTIFICACIÓN:</span>
+            {{ adoptante.citizenship_card }}
+          </div>
+          <div class="adoptante-info">
+            <span class="adoptante-title">DIRECCIÓN:</span>
+            {{ adoptante.address }}
+          </div>
+          <div class="adoptante-info">
+            <span class="adoptante-title">CIUDAD:</span>
+            {{ adoptante.city }}
+          </div>
+          <div class="action-buttons" style="display: flex; justify-content: center; gap: 10px;">
+            <button class="btn btn-sm" [routerLink]="['/adoptantes/editar/', adoptante.id]"
+              style="background-color: #a200ff; color: white;">Editar</button>
+            <button class="btn btn-sm" (click)="borrarAdoptante(adoptante.id)"
+              style="background-color: #f44336; color: white;">Borrar</button>
+          </div>
         </div>
+      </ng-container>
     </div>
   </div>
-  
+
+
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="lista-mascotas.component.ts"></script>
-  
-  <!-- Enlaza Bootstrap JS y jQuery (opcional pero recomendado) -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -9,6 +9,7 @@ import { SolicitudService } from '../shared/solicitud.service';
 })
 export class ListaSolicitudesComponent implements OnInit{
   solicitudes: Observable<SolicitudModel[]> | undefined;
+  searchText: string = ''; // Agrega esta propiedad
   constructor(private solicitudService: SolicitudService){}
   ngOnInit() {
     this.solicitudes=this.solicitudService.obtenerSolicitudes();
