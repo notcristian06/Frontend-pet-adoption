@@ -14,6 +14,7 @@ import { ListaSolicitudesComponent } from './lista-solicitudes/lista-solicitudes
 import { EditarSolicitudesComponent } from './editar-solicitudes/editar-solicitudes.component';
 import { AdoptanteService } from './shared/adoptante.service';
 import { SolicitudService } from './shared/solicitud.service';
+import { InicioPaginaComponent } from './inicio-pagina/inicio-pagina.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { SolicitudService } from './shared/solicitud.service';
     EditarAdoptantesComponent,
     ListaSolicitudesComponent,
     EditarSolicitudesComponent,
+    InicioPaginaComponent,
 
   ],
   imports: [

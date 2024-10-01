@@ -6,6 +6,7 @@ import { ListaAdoptantesComponent } from './lista-adoptantes/lista-adoptantes.co
 import { EditarAdoptantesComponent } from './editar-adoptantes/editar-adoptantes.component';
 import { ListaSolicitudesComponent } from './lista-solicitudes/lista-solicitudes.component';
 import { EditarSolicitudesComponent } from './editar-solicitudes/editar-solicitudes.component';
+import { InicioPaginaComponent } from './inicio-pagina/inicio-pagina.component';
 
 const routes: Routes = [
   { path: 'mascotas', component: ListaMascotasComponent },
@@ -20,7 +21,9 @@ const routes: Routes = [
   { path: 'solicitudes/editar/:idSolicitud', component: EditarSolicitudesComponent },
   { path: 'solicitudes/agregar', component: EditarSolicitudesComponent },
 
-  { path: '**', redirectTo: '/mascotas', pathMatch: 'full' } // solo una ruta '**'
+  { path: 'inicio', component: InicioPaginaComponent },
+
+  { path: '**', redirectTo: '/inicio', pathMatch: 'full' } // solo una ruta '**'
 ];
 
 
