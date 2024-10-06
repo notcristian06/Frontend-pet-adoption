@@ -42,7 +42,7 @@
   .card img {
     object-fit: cover;
     margin-left: 30px;
-    
+
   }
 
   .card-body {
@@ -86,7 +86,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
-      
+
       <li class="nav-item active">
         <a class="nav-link custom-nav-link" href="/mascotas">Mascotas</a>
       </li>
@@ -96,7 +96,7 @@
       <li class="nav-item">
         <a class="nav-link custom-nav-link" href="/solicitudes">Solicitudes</a>
       </li>
-      
+
     </ul>
     <!-- Imagen de usuario -->
     <ul class="navbar-nav">
@@ -156,34 +156,28 @@
                    (mascota.species.toLowerCase() === 'pez') ? 'https://www.svgrepo.com/show/317413/fish.svg' :
                    (mascota.species.toLowerCase() === 'murcielago') ? 'https://www.svgrepo.com/show/425730/bat-scary.svg' :
                    'https://www.svgrepo.com/show/366549/application-pet.svg'" alt="Imagen de {{mascota.name}}"
-                   style="height: 200px; width: 200px;">
+            style="height: 200px; width: 200px;">
 
 
-                   <div class="card-body">
-                    <h5 class="card-title">{{ mascota.name }}</h5>
-                    <p class="card-text">ID: {{ mascota.id }}</p>
-                    <p class="card-text">Edad: {{ mascota.age }} años</p>
-                    <p class="card-text">Especie: {{ mascota.species }}</p>
-                  
-                    <!-- Botón Editar -->
-                    <a class="btn btn-sm mr-2" [routerLink]="['/mascotas/editar/', mascota.id]"
-                      style="background-color: #a200ff; color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem;">
-                      Editar
-                    </a>
-                  
-                    <!-- Botón Borrar -->
-                    <button class="btn btn-sm" (click)="borrarMascota(mascota.id)"
-                      style="background-color: #f44336; color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem;">
-                      Borrar
-                    </button>
-                  
-                    <!-- Botón Adoptar 
-                    <a class="btn btn-sm" [routerLink]="['/solicitudes/agregar', { pet_id: mascota.id, pet_ame: mascota.name }]"
-                      style="background-color: #4CAF50; color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem;">
-                      Adoptar
-                    </a>-->
-                  </div>
-                  
+          <div class="card-body">
+            <h5 class="card-title">{{ mascota.name }}</h5>
+            <p class="card-text">ID: {{ mascota.id }}</p>
+            <p class="card-text">Edad: {{ mascota.age }} años</p>
+            <p class="card-text">Especie: {{ mascota.species }}</p>
+
+            <!-- Botón Editar -->
+            <a class="btn btn-sm mr-2" [routerLink]="['/mascotas/editar/', mascota.id]"
+              style="background-color: #a200ff; color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem;">
+              Editar
+            </a>
+
+            <!-- Botón Borrar -->
+            <button class="btn btn-sm" (click)="borrarMascota(mascota.id)"
+              style="background-color: #f44336; color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); font-family: 'Arial', sans-serif; font-size: 1.1rem;">
+              Borrar
+            </button>
+          </div>
+
         </div>
       </div>
     </ng-container>
